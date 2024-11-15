@@ -1,0 +1,23 @@
+﻿@model lab3_forms.Models.Dane
+
+@{
+    ViewData["Title"] = "Formularz";
+}
+
+<h1>Formularz</h1>
+
+@using (Html.BeginForm("Form", "Dane", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <p>Twoje imię: @Html.TextBoxFor(a => a.Imie)</p>
+    <p>Twoje nazwisko: @Html.TextBoxFor(a => a.Nazwisko)</p>
+    <p>Adres e-mail: @Html.TextBoxFor(a => a.Email, new { type = "email" })</p>
+    <p>Hasło: @Html.PasswordFor(a => a.Haslo)</p>
+    <p>Potwierdzenie hasła: @Html.PasswordFor(a => a.PotwierdzenieHasla)</p>
+    <p>Numer telefonu: @Html.TextBoxFor(a => a.NrTelefonu, new { type = "tel" })</p>
+    <p>Wiek: @Html.TextBoxFor(a => a.Wiek, new { type = "number" })</p>
+    <p>Miasto: @Html.DropDownListFor(a => a.Miasto, new SelectList(Enum.GetValues(typeof(lab3_forms.Models.Dane.Miasta))), "Wybierz miasto", new { @class = "form-control" })</p>
+    <br />
+    <input type="submit" value="Wyślij" class="btn btn-primary" />
+}
